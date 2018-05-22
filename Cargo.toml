@@ -1,0 +1,15 @@
+[package]
+name = "rust-rest-api"
+version = "0.1.0"
+authors = ["George Maistrenko <george.maistrenko@mobintegro.com>"]
+
+[dependencies]
+rocket = "*"
+rocket_contrib = "*"
+rocket_codegen = "*"
+
+serde = "*"
+serde_derive = "*"
+serde_json = "*"
+
+diesel = { version = "*", features = ["mysql", "r2d2"] }
