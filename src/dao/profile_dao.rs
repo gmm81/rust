@@ -6,20 +6,58 @@ use diesel::pg::PgConnection;
 use diesel::prelude::*;
 
 
-pub struct DAO<'a> {
+/*pub struct DAO<'a> {
     pub connection: &'a PgConnection,
     pub first_name: &'a str,
     pub last_name: &'a str,
     pub email: &'a str,
     pub age: i32,
     pub sex: bool,
-}
+}*/
 
 pub struct RunResult {
-    pub data: Profile,
+    pub data: Profile
 }
 
-impl<'a> DAO<'a> {
+pub fn get_profile_by_email(connection: &PgConnection, email: &str) -> Result<RunResult> {
+    let profile = tbl_profiles::table
+        .filter(tbl_profiles::email.eq(email))
+        .first(connection)
+        .optional()
+        .chain_err(|| "Error selecting profile")?;
+    match profile {
+        Some(data) => {
+            Ok(RunResult { data })
+        }
+        None => {
+            //info!("No profile with that email");
+            bail!(user_errors::validation(
+                "No profile matched that email address."
+            ))
+        }
+    }
+}
+
+pub fn get_profile(connection: &PgConnection, id: i32) -> Result<RunResult> {
+    let profile = tbl_profiles::table
+        .filter(tbl_profiles::id.eq(id))
+        .first(connection)
+        .optional()
+        .chain_err(|| "Error selecting profile")?;
+    match profile {
+        Some(data) => {
+            Ok(RunResult { data })
+        }
+        None => {
+            //info!("No profile with that email");
+            bail!(user_errors::validation(
+                "No profile matched that id."
+            ))
+        }
+    }
+}
+
+/*impl<'a> DAO<'a> {
     pub fn run(&mut self) -> Result<RunResult> {
         //self.connection.transaction::<_, Error, _>(|| self.run_inner())
         self.run_inner()
@@ -56,4 +94,4 @@ impl<'a> DAO<'a> {
             .optional()
             .chain_err(|| "Error selecting profile")
     }
-}
+}*/

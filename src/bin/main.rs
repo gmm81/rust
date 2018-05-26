@@ -41,7 +41,8 @@ fn test() -> Result<()> {
     println!("Getting connection from pool");
     let conn = pool.get()?;
     println!("Getting profile");
-    let result = dao::profile_dao::DAO { connection: &*conn, first_name: "", last_name: "", email: "gmm81@gmail.com", age: 37, sex: true }.run();
+    //let result = dao::profile_dao::DAO { connection: &*conn, first_name: "", last_name: "", email: "gmm81@gmail.com", age: 37, sex: true }.run();
+    let result = dao::profile_dao::get_profile(&*conn, 1);
     match result {
         Ok(res) => {
             println!("Found user: {:?}", res.data);
