@@ -14,8 +14,6 @@ table! {
         first_name -> Varchar,
         last_name -> Varchar,
         email -> Varchar,
-        age -> Nullable<Int4>,
-        sex -> Nullable<Bool>,
     }
 }
 

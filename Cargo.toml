@@ -1,7 +1,15 @@
 [package]
-name = "rust-rest-api"
-version = "0.1.0"
+name = "microservice"
+version = "0.1.1"
 authors = ["George Maistrenko <george.maistrenko@mobintegro.com>"]
+
+[[bin]]
+name = "microservice"
+path = "src/bin/main.rs"
+
+[lib]
+name = "microservice"
+path = "src/lib.rs"
 
 [dependencies]
 # REST web server dependencies
@@ -17,6 +25,12 @@ serde_urlencoded = "*"
 
 # Database dependencies
 diesel = { version = "1.3.0", features = ["postgres","r2d2","serde_json","chrono"] }
+diesel_migrations = "*"
+r2d2 = "0.8.2"
 chrono = "*"
 lazy_static = "*"
 dotenv = "*"
+
+# Utils
+error-chain = "*"
+futures = "0.1"
