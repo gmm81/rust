@@ -1,4 +1,7 @@
-#[derive(Clone, Debug, Queryable)]
+use schema::*;
+
+#[table_name = "tbl_accounts"]
+#[derive(Clone, Debug, Queryable, Insertable, AsChangeset)]
 pub struct Account {
     pub id: i32,
     pub login: String,
@@ -6,12 +9,13 @@ pub struct Account {
     pub active: bool,
 }
 
-#[derive(Clone, Debug, Queryable)]
+#[table_name = "tbl_profiles"]
+#[derive(Clone, Debug, Queryable, Insertable, AsChangeset)]
 pub struct Profile {
     pub id: i32,
     pub first_name: String,
     pub last_name: String,
-    pub email: String
+    pub email: String,
 }
 
 /*

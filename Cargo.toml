@@ -13,9 +13,9 @@ path = "src/lib.rs"
 
 [dependencies]
 # REST web server dependencies
-rocket = "*"
-rocket_contrib = "*"
-rocket_codegen = "*"
+#rocket = "*"
+#rocket_contrib = "*"
+#rocket_codegen = "*"
 
 # JSON dependencies
 serde = "*"
