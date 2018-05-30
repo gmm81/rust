@@ -1,6 +1,7 @@
 -- Your SQL goes here
 CREATE TABLE tbl_profiles(
   id BIGSERIAL,
+  account_id  BIGINT NOT NULL,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   birth_date TIMESTAMPTZ,
@@ -11,10 +12,10 @@ CREATE TABLE tbl_profiles(
 ALTER TABLE tbl_profiles OWNER TO rust;
 
 CREATE UNIQUE INDEX idx_profile_id ON tbl_profiles USING btree(id);
-
-ALTER TABLE tbl_accounts
-    ADD CONSTRAINT fk_account_profile_id
-    FOREIGN KEY (fk_profile)
-    REFERENCES tbl_profiles (id)
+CREATE INDEX idx_profile_account ON tbl_profiles USING btree(account_id);
+ALTER TABLE tbl_profiles
+    ADD CONSTRAINT fk_profile_account_id
+    FOREIGN KEY (account_id)
+    REFERENCES tbl_accounts (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE;

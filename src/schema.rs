@@ -1,7 +1,6 @@
 table! {
     tbl_accounts (id) {
         id -> Int8,
-        fk_profile -> Int8,
         created_at -> Timestamptz,
         email -> Nullable<Text>,
         password -> Text,
@@ -14,6 +13,7 @@ table! {
 table! {
     tbl_profiles (id) {
         id -> Int8,
+        account_id -> Int8,
         first_name -> Text,
         last_name -> Text,
         birth_date -> Nullable<Timestamptz>,
@@ -21,7 +21,7 @@ table! {
     }
 }
 
-joinable!(tbl_accounts -> tbl_profiles (fk_profile));
+joinable!(tbl_profiles -> tbl_accounts (account_id));
 
 allow_tables_to_appear_in_same_query!(
     tbl_accounts,

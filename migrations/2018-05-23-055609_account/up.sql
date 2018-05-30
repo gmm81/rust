@@ -1,7 +1,6 @@
 -- Your SQL goes here
 CREATE TABLE tbl_accounts (
   id BIGSERIAL,
-  fk_profile  BIGINT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   email TEXT UNIQUE,
   password TEXT NOT NULL,
@@ -13,4 +12,3 @@ CREATE TABLE tbl_accounts (
 ALTER TABLE tbl_accounts OWNER TO rust;
 
 CREATE UNIQUE INDEX idx_account_id ON tbl_accounts USING btree (id);
-CREATE INDEX idx_account_profile ON tbl_accounts USING btree(fk_profile);

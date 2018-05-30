@@ -19,12 +19,12 @@ pub fn get_account(connection: &PgConnection, id: i64) -> Result<Account> {
 
 
 pub fn get_account_with_profile(connection: &PgConnection, id: i64) /*-> ReturnResult*/ {
-    let res = tbl_accounts::table
+    let joined_tuples = tbl_accounts::table
         .inner_join(tbl_profiles::table)
         .filter(tbl_accounts::id.eq(id))
-        .select((tbl_accounts::all_columns, tbl_profiles::all_columns))
         .load::<(Account, Profile)>(connection)
         .chain_err(|| "Error selecting account with profile");
+
 
     /*  match res {
           Ok(r) => {
@@ -35,5 +35,6 @@ pub fn get_account_with_profile(connection: &PgConnection, id: i64) /*-> ReturnR
           }
           Err(_) => {}
       }*/
-    print!("res: {:?}", res)
+    //Ok(joined_tuples)
+    print!("res: {:?}", joined_tuples)
 }
