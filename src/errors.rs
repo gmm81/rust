@@ -3,6 +3,7 @@
 //     http://brson.github.io/2016/11/30/starting-with-error-chain
 //
 use futures::Future;
+use r2d2;
 use std;
 // Create the Error, ErrorKind, ResultExt, and Result types
 error_chain! {

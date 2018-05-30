@@ -1,19 +1,23 @@
 table! {
     tbl_accounts (id) {
-        id -> Int4,
-        fk_profile -> Int4,
-        login -> Varchar,
-        password -> Varchar,
+        id -> Int8,
+        fk_profile -> Int8,
+        created_at -> Timestamptz,
+        email -> Nullable<Text>,
+        password -> Text,
+        last_ip -> Text,
+        last_seen_at -> Timestamptz,
         active -> Bool,
     }
 }
 
 table! {
     tbl_profiles (id) {
-        id -> Int4,
-        first_name -> Varchar,
-        last_name -> Varchar,
-        email -> Varchar,
+        id -> Int8,
+        first_name -> Text,
+        last_name -> Text,
+        birth_date -> Nullable<Timestamptz>,
+        sex -> Nullable<Bool>,
     }
 }
 

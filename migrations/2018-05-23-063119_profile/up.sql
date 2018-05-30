@@ -1,10 +1,9 @@
 -- Your SQL goes here
 CREATE TABLE tbl_profiles(
-  id SERIAL,
-  first_name VARCHAR(255) NOT NULL,
-  last_name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  age INTEGER,
+  id BIGSERIAL,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  birth_date TIMESTAMPTZ,
   sex BOOLEAN,
   CONSTRAINT tbl_profiles_pkey PRIMARY KEY (id)
 );

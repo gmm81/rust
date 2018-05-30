@@ -1,14 +1,14 @@
 #![recursion_limit = "128"]
-#![feature(custom_attribute, extern_prelude)]
 
 #[macro_use]
 extern crate diesel;
 #[macro_use]
 extern crate error_chain;
 extern crate futures;
+extern crate chrono;
+extern crate r2d2;
 
 mod model;
-#[cfg_attr(rustfmt, rustfmt_skip)]
 mod schema;
 
 pub mod errors;
